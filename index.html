@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wisly Susanto – Freelancer CV</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d1117;
+    --ink2: #3a4150;
+    --ink3: #6e7891;
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --accent: #1b4dff;
+    --accent2: #00c58e;
+    --border: rgba(13,17,23,0.1);
+    --tag-bg: #eef1ff;
+    --tag-text: #1b4dff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* --- ANIMATED BG DOTS --- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(27,77,255,0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  /* --- HERO --- */
+  .hero {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(27,77,255,0.12), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1b4dff 0%, #00c58e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem;
+    color: #fff;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .avatar::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px dashed rgba(27,77,255,0.3);
+    animation: spin 12s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .hero-info h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-info h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+  }
+
+  .role-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--accent2);
+    border-radius: 50%;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    font-size: 0.85rem;
+    color: var(--ink3);
+    margin-top: 0.5rem;
+  }
+
+  .hero-meta span::before { margin-right: 4px; }
+
+  /* --- NAV TABS --- */
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink3);
+    transition: all 0.2s;
+  }
+
+  .tab:hover { color: var(--accent); border-color: var(--accent); }
+
+  .tab.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  /* --- SECTIONS --- */
+  .section { display: none; }
+  .section.active { display: block; animation: fadeUp 0.4s ease both; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .card .sub {
+    font-size: 0.85rem;
+    color: var(--ink3);
+    margin-bottom: 0.75rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    color: var(--ink2);
+    line-height: 1.7;
+  }
+
+  /* --- TIMELINE --- */
+  .timeline { position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2));
+    border-radius: 2px;
+  }
+
+  .tl-item {
+    position: relative;
+    padding-bottom: 1.75rem;
+  }
+
+  .tl-item:last-child { padding-bottom: 0; }
+
+  .tl-dot {
+    position: absolute;
+    left: -1.5rem;
+    top: 4px;
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 2px solid var(--bg);
+    transform: translateX(-5px);
+  }
+
+  .tl-item.current .tl-dot {
+    background: var(--accent2);
+    box-shadow: 0 0 0 4px rgba(0,197,142,0.2);
+  }
+
+  .tl-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink3);
+    margin-bottom: 0.2rem;
+  }
+
+  .tl-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .tl-place {
+    font-size: 0.82rem;
+    color: var(--ink3);
+    margin-top: 2px;
+  }
+
+  /* --- SKILLS --- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .skill-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .skill-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+
+  .skill-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .skill-bar-bg {
+    height: 4px;
+    background: #eee;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .skill-bar {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    width: 0;
+    transition: width 1s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* --- TAGS --- */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+
+  /* --- CONTACT --- */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .contact-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.88rem;
+    color: var(--ink2);
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .contact-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    color: var(--accent);
+  }
+
+  .contact-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--tag-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* --- CTA --- */
+  .cta-bar {
+    background: linear-gradient(135deg, var(--accent) 0%, #0030cc 100%);
+    border-radius: 16px;
+    padding: 2rem 2rem;
+    text-align: center;
+    color: #fff;
+    margin-top: 1rem;
+  }
+
+  .cta-bar h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-bar p { font-size: 0.9rem; opacity: 0.85; margin-bottom: 1.25rem; }
+
+  .cta-btn {
+    display: inline-block;
+    background: #fff;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 10px 24px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+
+  .cta-btn:hover { transform: scale(1.04); }
+
+  /* two-col layout for about */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  @media (max-width: 600px) {
+    .hero { grid-template-columns: 1fr; text-align: center; }
+    .hero-meta { justify-content: center; }
+    .two-col { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .avatar { margin: 0 auto; }
+    .hero-info h1 { font-size: 1.7rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="avatar">WS</div>
+    <div class="hero-info">
+      <div class="role-badge">Open to Freelance</div>
+      <h1>Hello, I'm<br /><em>Wisly</em></h1>
+      <div class="hero-meta">
+        <span>📍 Pontianak, Kalimantan Barat</span>
+        <span>🎂 June 29, 2005</span>
+        <span>🎓 STMIK Pontianak</span>
+        <span>💼 Available for projects</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('about')">About</div>
+    <div class="tab" onclick="switchTab('education')">Education</div>
+    <div class="tab" onclick="switchTab('experience')">Experience</div>
+    <div class="tab" onclick="switchTab('skills')">Skills</div>
+    <div class="tab" onclick="switchTab('contact')">Contact</div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="about" class="section active">
+    <div class="card">
+      <div class="card-label">// profile</div>
+      <p>
+        I am a passionate Informatics Engineering student in my 6th semester at STMIK Pontianak, based in Pontianak, Kalimantan Barat. I have hands-on experience in banking technology support through my internship with SSI Gorontalo in collaboration with BCA Bank, and I currently work at Maitreyawira Primary School Kalbar. I am actively seeking freelance opportunities to apply and grow my technical skills.
+      </p>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-label">// details</div>
+        <table style="width:100%; font-size:0.87rem; border-collapse:collapse;">
+          <tr><td style="color:var(--ink3); padding:5px 0; width:45%;">Full Name</td><td style="font-weight:500;">Wisly Susanto</td></tr>
+          <tr><td style="color:var(--ink3); padding:5px 0;">Gender</td><td style="font-weight:500;">Male</td></tr>
+          <tr><td style="color:var(--ink3); padding:5px 0;">Date of Birth</td><td style="font-weight:500;">29 June 2005</td></tr>
+          <tr><td style="color:var(--ink3); padding:5px 0;">Origin</td><td style="font-weight:500;">Pekanbaru, Riau</td></tr>
+          <tr><td style="color:var(--ink3); padding:5px 0;">Location</td><td style="font-weight:500;">Pontianak, Kalimantan Barat</td></tr>
+          <tr><td style="color:var(--ink3); padding:5px 0;">Nationality</td><td style="font-weight:500;">Indonesian</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-label">// interests</div>
+        <div class="tags">
+          <span class="tag">Web Development</span>
+          <span class="tag">IT Support</span>
+          <span class="tag">Networking</span>
+          <span class="tag">Banking Tech</span>
+          <span class="tag">Teaching</span>
+          <span class="tag">Database</span>
+          <span class="tag">Cloud Computing</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Cybersecurity</span>
+          <span class="tag">Data Science</span>
+          <span class="tag">Office Management</span>
+        </div>
+      </div>
+    </div>
+    <div class="cta-bar">
+      <h3>Let's work together</h3>
+      <p>Available for freelance projects in web development, IT support, and more.</p>
+      <a class="cta-btn" onclick="switchTab('contact')">Get in touch →</a>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div id="education" class="section">
+    <div class="card">
+      <div class="card-label">// education history</div>
+      <div class="timeline">
+        <div class="tl-item current">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2023 – Present · Semester 6</div>
+          <div class="tl-title">S1 Informatics Engineering</div>
+          <div class="tl-place">STMIK Pontianak — Pontianak, Kalimantan Barat</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2020 – 2023</div>
+          <div class="tl-title">Senior High School</div>
+          <div class="tl-place">SMA Negeri 3 — Pontianak, Kalimantan Barat</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2017 – 2020</div>
+          <div class="tl-title">Junior High School</div>
+          <div class="tl-place">SMP Negeri 10 — Pontianak, Kalimantan Barat</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2011 – 2017</div>
+          <div class="tl-title">Primary School</div>
+          <div class="tl-place">SD Negeri 29 — Pontianak, Kalimantan Barat</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div id="experience" class="section">
+    <div class="card">
+      <div class="card-label">// work experience</div>
+      <div class="timeline">
+        <div class="tl-item current">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Current Position</div>
+          <div class="tl-title">Staff — Maitreyawira Primary School Kalbar</div>
+          <div class="tl-place">Kalimantan Barat, Indonesia</div>
+          <p style="font-size:0.87rem; color:var(--ink2); margin-top:0.5rem; line-height:1.7;">
+            Currently contributing to school operations and IT-related tasks at Maitreyawira Primary School, supporting staff and students with technology needs.
+          </p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Internship</div>
+          <div class="tl-title">IT Intern — SSI Gorontalo × BCA Bank</div>
+          <div class="tl-place">Gorontalo, Indonesia</div>
+          <p style="font-size:0.87rem; color:var(--ink2); margin-top:0.5rem; line-height:1.7;">
+            Gained hands-on experience in banking support services and ATM management. Worked under the collaboration between SSI Gorontalo and BCA Bank, handling technical support for Automated Teller Machines (ATMs) and related banking infrastructure.
+          </p>
+          <div class="tags">
+            <span class="tag">ATM Management</span>
+            <span class="tag">Banking Systems</span>
+            <span class="tag">IT Support</span>
+            <span class="tag">Hardware Maintenance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div id="skills" class="section">
+    <div class="card" style="margin-bottom:1rem;">
+      <div class="card-label">// technical skills</div>
+      <div class="skills-grid" id="skillsGrid">
+        <!-- injected by JS -->
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">// soft skills</div>
+      <div class="tags">
+        <span class="tag">Problem Solving</span>
+        <span class="tag">Teamwork</span>
+        <span class="tag">Communication</span>
+        <span class="tag">Fast Learner</span>
+        <span class="tag">Time Management</span>
+        <span class="tag">Adaptability</span>
+        <span class="tag">Attention to Detail</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">// languages</div>
+      <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:0.25rem;">
+
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span style="font-size:1.1rem;">🇮🇩</span>
+            <span style="font-size:0.9rem; font-weight:500;">Indonesian</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <div style="display:flex; gap:3px;">
+              <div style="width:20px;height:6px;border-radius:3px;background:var(--accent);"></div>
+              <div style="width:20px;height:6px;border-radius:3px;background:var(--accent);"></div>
+              <div style="width:20px;height:6px;border-radius:3px;background:var(--accent);"></div>
+              <div style="width:20px;height:6px;border-radius:3px;background:var(--accent);"></div>
+              <div style="width:20px;height:6px;border-radius:3px;background:var(--accent);"></div>
+            </div>
+            <span style="font-size:0.78rem;color:var(--ink3);">Native</span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span style="font-size:1.1rem;">🇬🇧</span>
+            <span style="font-size:0.9rem; font-weight:500;">English</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <div style="display:flex; gap:3px;">
+              <div style="width:20px;height:6px;border-radius:3px;background:var(--accent);"></div>
+              <div style="width:20px;height:6px;border-radius:3px;background:var(--accent);"></div>
+              <div style="width:20px;height:6px;border-radius:3px;background:var(--accent);"></div>
+              <div style="width:20px;height:6px;border-radius:3px;background:#e0e0e0;"></div>
+              <div style="width:20px;height:6px;border-radius:3px;background:#e0e0e0;"></div>
+            </div>
+            <span style="font-size:0.78rem;color:var(--ink3);">Intermediate</span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span style="font-size:1.1rem;">🇨🇳</span>
+            <span style="font-size:0.9rem; font-weight:500;">Mandarin</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <div style="display:flex; gap:3px;">
+              <div style="width:20px;height:6px;border-radius:3px;background:var(--accent);"></div>
+              <div style="width:20px;height:6px;border-radius:3px;background:var(--accent);"></div>
+              <div style="width:20px;height:6px;border-radius:3px;background:var(--accent);"></div>
+              <div style="width:20px;height:6px;border-radius:3px;background:#e0e0e0;"></div>
+              <div style="width:20px;height:6px;border-radius:3px;background:#e0e0e0;"></div>
+            </div>
+            <span style="font-size:0.78rem;color:var(--ink3);">Intermediate</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact" class="section">
+    <div class="card">
+      <div class="card-label">// reach out</div>
+      <p style="font-size:0.9rem; color:var(--ink2); margin-bottom:1.25rem;">I'm open to freelance projects, part-time collaborations, and interesting opportunities. Feel free to reach out!</p>
+      <div class="contact-grid">
+        <a class="contact-item" href="mailto:wislysusanto@gmail.com">
+          <div class="contact-icon">✉️</div>
+          <div><div style="font-weight:500; font-size:0.82rem; color:var(--ink3); margin-bottom:2px;">Email</div>wislysusanto@gmail.com</div>
+        </a>
+        <a class="contact-item" href="https://www.linkedin.com/in/wisly-susanto-0a8a17336">
+          <div class="contact-icon">💼</div>
+          <div><div style="font-weight:500; font-size:0.82rem; color:var(--ink3); margin-bottom:2px;">LinkedIn</div>linkedin.com/in/wisly-susanto-0a8a17336</div>
+        </a>
+        <a class="contact-item" href="https://github.com/WislyS">
+          <div class="contact-icon">🐙</div>
+          <div><div style="font-weight:500; font-size:0.82rem; color:var(--ink3); margin-bottom:2px;">GitHub</div>github.com/WislyS</div>
+        </a>
+        <a class="contact-item" href="https://wa.me/628991296260">
+          <div class="contact-icon">📱</div>
+          <div><div style="font-weight:500; font-size:0.82rem; color:var(--ink3); margin-bottom:2px;">WhatsApp</div>+62 899-1296-260</div>
+        </a>
+      </div>
+    </div>
+    <div class="card" style="background:var(--tag-bg); border-color:transparent;">
+      <div class="card-label">// location</div>
+      <p style="font-size:0.9rem; color:var(--ink2);">📍 Currently in <strong>Pontianak, Kalimantan Barat</strong>, Indonesia. Available for remote work worldwide and on-site in Kalimantan.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const skills = [
+    { name: 'IT Support', level: 85 },
+    { name: 'ATM / Hardware', level: 75 },
+    { name: 'Web Development', level: 65 },
+    { name: 'Networking', level: 70 },
+    { name: 'Database (SQL)', level: 60 },
+    { name: 'Microsoft Office', level: 80 },
+    { name: 'Troubleshooting', level: 82 },
+    { name: 'Linux Basics', level: 55 },
+  ];
+
+  const grid = document.getElementById('skillsGrid');
+  skills.forEach(s => {
+    grid.innerHTML += `
+      <div class="skill-item">
+        <div class="skill-name"><span>${s.name}</span><span style="font-size:0.75rem; color:var(--ink3);">${s.level}%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar" data-level="${s.level}"></div></div>
+      </div>`;
+  });
+
+  function switchTab(name) {
+    document.querySelectorAll('.tab').forEach((t, i) => {
+      const tabs = ['about','education','experience','skills','contact'];
+      t.classList.toggle('active', tabs[i] === name);
+    });
+    document.querySelectorAll('.section').forEach(s => {
+      s.classList.toggle('active', s.id === name);
+    });
+    if (name === 'skills') animateBars();
+  }
+
+  function animateBars() {
+    setTimeout(() => {
+      document.querySelectorAll('.skill-bar').forEach(bar => {
+        bar.style.width = bar.dataset.level + '%';
+      });
+    }, 100);
+  }
+</script>
+</body>
+</html>
